@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SecureDocs</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <section id="loginView" class="login">
+    <div class="card login-card">
+      <div class="brand" style="color:#10213a">Secure<span>Docs</span></div>
+      <h1 style="margin-top:28px">Acceso seguro</h1>
+      <p class="subtitle">Autenticación y autorización empresarial RBAC + ABAC.</p>
+      <form id="loginForm" style="margin-top:24px">
+        <label>Correo
+          <input id="email" type="email" value="admin@securedocs.local" required>
+        </label>
+        <label>Contraseña
+          <input id="password" type="password" value="Secure123!" required>
+        </label>
+        <button class="btn" type="submit">Iniciar sesión</button>
+        <div class="notice">Demo: use cualquiera de los correos documentados en el README con la contraseña <strong>Secure123!</strong>.</div>
+        <div id="loginError" class="error"></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="appView" class="shell hidden">
+    <aside class="sidebar">
+      <div class="brand">Secure<span>Docs</span></div>
+      <p>Control documental con decisiones de acceso trazables.</p>
+      <nav class="nav">
+        <button data-view="documents" class="active">Documentos</button>
+        <button data-view="audit">Auditoría</button>
+        <button id="apiDocs">API</button>
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1 id="pageTitle">Documentos</h1>
+          <p class="subtitle">Solo se muestran recursos autorizados para la sesión y el contexto actual.</p>
+        </div>
+        <button id="logout" class="btn secondary">Cerrar sesión</button>
+      </header>
+
+      <div class="grid">
+        <article class="card"><div class="label">Documentos visibles</div><div id="documentCount" class="metric">0</div></article>
+        <article class="card"><div class="label">Motor de acceso</div><div class="metric">RBAC + ABAC</div></article>
+        <article class="card"><div class="label">Contexto de demostración</div><div class="metric" style="font-size:1.1rem">PERU · CORPORATIVO</div></article>
+      </div>
+
+      <section id="documentsView" class="card panel">
+        <div class="panel-head"><h2>Expedientes</h2><button id="newDocument" class="btn">Nuevo documento</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Título</th><th>Área</th><th>Nivel</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="documentsBody"></tbody></table></div>
+      </section>
+
+      <section id="auditView" class="card panel hidden">
+        <div class="panel-head"><h2>Registro de auditoría</h2><button id="refreshAudit" class="btn secondary">Actualizar</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Usuario</th><th>Acción</th><th>Resultado</th><th>Motivo</th></tr></thead><tbody id="auditBody"></tbody></table></div>
+      </section>
+    </main>
+  </section>
+
+  <section id="documentModal" class="modal hidden">
+    <form id="documentForm" class="card">
+      <div class="panel-head"><h2>Nuevo documento</h2><button id="closeModal" type="button" class="btn secondary">Cerrar</button></div>
+      <label>Título<input id="docTitle" required></label>
+      <label>Descripción<textarea id="docDescription" rows="3"></textarea></label>
+      <label>Departamento<input id="docDepartment" value="FINANZAS" required></label>
+      <label>Nivel de confidencialidad<select id="docLevel"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
+      <label>País<input id="docCountry" value="PERU" required></label>
+      <div id="documentError" class="error"></div>
+      <div class="actions"><button type="submit" class="btn">Crear</button></div>
+    </form>
+  </section>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
+
