@@ -4,7 +4,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      SECUREDOCS_SECRET_KEY: ${SECUREDOCS_SECRET_KEY:-change-this-docker-secret}
+      SECUREDOCS_SECRET_KEY: ${SECUREDOCS_SECRET_KEY:-change-this-docker-secret-at-least-32-bytes}
       SECUREDOCS_DATABASE_URL: sqlite:////data/secure_docs.db
       SECUREDOCS_ALLOW_CONTEXT_HEADERS: "true"
     volumes:
