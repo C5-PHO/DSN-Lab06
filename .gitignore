@@ -1,10 +1,11 @@
 .venv/
 __pycache__/
 *.py[cod]
+*.egg-info/
 .pytest_cache/
 .coverage
 htmlcov/
 secure_docs.db
+test_secure_docs.db
 .env
 .DS_Store
-
